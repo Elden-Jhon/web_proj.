@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace leprob16
+{
+    public partial class Form1: Form
+    {
+        int Xmarginb = 250;
+        int Ymarginb;
+        //store the w and h of the client on load to get the proper measure
+        int clientW;
+        int clientH;
+        int boxW = 400;
+        int boxH = 200;
+        public Form1()
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.Paint += Form1_Paint;
+
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            SetTheScene();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            clientH = this.ClientSize.Height;
+            clientW = this.ClientSize.Width;
+            
+            SetTheScene();
+            
+        }
+
+        //this function draws all the static objects on the scene
+        void SetTheScene()
+        {
+            Graphics g = this.CreateGraphics();
+
+            this.BackColor = Color.Black;
+            g.FillRectangle(Brushes.Green, this.ClientSize.Width/2 - boxW/2, this.ClientSize.Height - boxH - 20, boxW, boxH);
+            g.FillRectangle(Brushes.Green, this.ClientSize.Width / 2 - boxW / 2, this.ClientSize.Height - (this.ClientSize.Height - 20), boxW, boxH);
+        }
+    }
+}
